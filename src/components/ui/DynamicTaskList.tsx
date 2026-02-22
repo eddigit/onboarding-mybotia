@@ -51,16 +51,21 @@ export default function DynamicTaskList({
       {tasks.map((task, index) => (
         <div
           key={index}
-          className="p-4 bg-white rounded-xl border border-dark-200 space-y-3"
+          className="p-4 rounded-xl space-y-3"
+          style={{
+            background: "rgba(255,255,255,0.03)",
+            border: "1px solid rgba(255,255,255,0.06)",
+          }}
         >
           <div className="flex items-center justify-between">
-            <span className="text-sm font-medium text-dark-700">
+            <span className="text-sm font-medium text-txt-primary">
               Tâche {index + 1}
             </span>
             <button
               type="button"
               onClick={() => removeTask(index)}
-              className="p-1 text-dark-400 hover:text-red-500 transition-colors"
+              className="p-1 rounded transition-colors text-txt-muted hover:text-red-400"
+              style={{ background: "rgba(255,255,255,0.04)" }}
               aria-label="Supprimer la tâche"
             >
               <Trash2 className="w-4 h-4" />
@@ -123,9 +128,12 @@ export default function DynamicTaskList({
           type="button"
           onClick={addTask}
           className="w-full flex items-center justify-center gap-2 p-3
-                     border-2 border-dashed border-dark-300 rounded-xl
-                     text-sm text-dark-500 hover:border-primary-400 hover:text-primary-600
-                     transition-all duration-200"
+                     rounded-xl text-sm text-txt-muted
+                     hover:text-accent-blue transition-all duration-200"
+          style={{
+            border: "1px dashed rgba(255,255,255,0.1)",
+            background: "rgba(255,255,255,0.02)",
+          }}
         >
           <Plus className="w-4 h-4" />
           Ajouter une tâche récurrente

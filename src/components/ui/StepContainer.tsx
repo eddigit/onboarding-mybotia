@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
+import { ChevronLeft, ChevronRight, Loader2, Send } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface StepContainerProps {
@@ -32,19 +32,19 @@ export default function StepContainer({
     <div className="w-full max-w-2xl mx-auto">
       {/* Header */}
       <div className="mb-8 text-center">
-        <h2 className="text-2xl sm:text-3xl font-bold text-dark-900 mb-2">
+        <h2 className="text-2xl sm:text-3xl font-bold text-txt-primary mb-2">
           {title}
         </h2>
-        <p className="text-dark-500 text-sm sm:text-base">{subtitle}</p>
+        <p className="text-txt-secondary text-sm sm:text-base">{subtitle}</p>
       </div>
 
       {/* Content */}
       <AnimatePresence mode="wait">
         <motion.div
           key={currentStep}
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -20 }}
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -12 }}
           transition={{ duration: 0.25, ease: "easeInOut" }}
         >
           <div className="space-y-6">{children}</div>
@@ -78,7 +78,10 @@ export default function StepContainer({
               Envoi en cours...
             </>
           ) : isLastStep ? (
-            "Valider et envoyer"
+            <>
+              Valider et envoyer
+              <Send className="w-4 h-4" />
+            </>
           ) : (
             <>
               Suivant

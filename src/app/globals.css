@@ -12,49 +12,128 @@
   }
 
   body {
-    @apply bg-white text-dark-900;
+    @apply bg-navy-950 text-txt-primary;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.18);
   }
 }
 
 @layer components {
+  /* ---- Glass Card ---- */
+  .glass-card {
+    @apply relative rounded-2xl;
+    background: linear-gradient(
+      135deg,
+      rgba(15, 20, 50, 0.7) 0%,
+      rgba(10, 14, 35, 0.85) 100%
+    );
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  }
+
+  .glass-card-lighter {
+    @apply relative rounded-xl;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(12px);
+  }
+
+  /* ---- Buttons ---- */
   .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-xl
-           bg-primary-600 text-white font-semibold text-sm
-           hover:bg-primary-700 transition-all duration-200
-           disabled:opacity-50 disabled:cursor-not-allowed
-           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+    @apply inline-flex items-center justify-center px-7 py-3.5 rounded-xl
+           text-white font-semibold text-sm
+           transition-all duration-300 ease-out
+           disabled:opacity-40 disabled:cursor-not-allowed disabled:transform-none
+           focus:outline-none focus:ring-2 focus:ring-accent-indigo/50 focus:ring-offset-2 focus:ring-offset-navy-900;
+    background: linear-gradient(135deg, #4f7df3 0%, #635bff 60%, #7c3aed 100%);
+    box-shadow: 0 4px 20px rgba(99, 91, 255, 0.3);
+  }
+  .btn-primary:hover:not(:disabled) {
+    box-shadow: 0 6px 30px rgba(99, 91, 255, 0.45);
+    transform: translateY(-1px);
   }
 
   .btn-secondary {
     @apply inline-flex items-center justify-center px-6 py-3 rounded-xl
-           bg-white text-dark-700 font-semibold text-sm border border-dark-200
-           hover:bg-dark-50 transition-all duration-200
-           focus:outline-none focus:ring-2 focus:ring-dark-300 focus:ring-offset-2;
+           text-txt-secondary font-semibold text-sm
+           transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-white/10 focus:ring-offset-2 focus:ring-offset-navy-900;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.16);
   }
 
+  /* ---- Input Fields ---- */
   .input-field {
-    @apply w-full px-4 py-3 rounded-xl border border-dark-200
-           text-dark-900 placeholder-dark-400 text-sm
-           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500
+    @apply w-full px-4 py-3 rounded-xl text-txt-primary text-sm
            transition-all duration-200;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .input-field::placeholder {
+    @apply text-txt-muted;
+  }
+  .input-field:focus {
+    outline: none;
+    border-color: rgba(79, 125, 243, 0.5);
+    box-shadow: 0 0 0 3px rgba(79, 125, 243, 0.12);
+    background: rgba(255, 255, 255, 0.07);
   }
 
   .textarea-field {
-    @apply w-full px-4 py-3 rounded-xl border border-dark-200
-           text-dark-900 placeholder-dark-400 text-sm resize-none
-           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500
+    @apply w-full px-4 py-3 rounded-xl text-txt-primary text-sm resize-none
            transition-all duration-200;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .textarea-field::placeholder {
+    @apply text-txt-muted;
+  }
+  .textarea-field:focus {
+    outline: none;
+    border-color: rgba(79, 125, 243, 0.5);
+    box-shadow: 0 0 0 3px rgba(79, 125, 243, 0.12);
+    background: rgba(255, 255, 255, 0.07);
   }
 
+  select.input-field {
+    @apply appearance-none cursor-pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%239ba3c2' viewBox='0 0 16 16'%3E%3Cpath d='M4.646 6.646a.5.5 0 0 1 .708 0L8 9.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+  }
+  select.input-field option {
+    background: #0f1632;
+    color: #f0f2ff;
+  }
+
+  /* ---- Labels & Text ---- */
   .label-field {
-    @apply block text-sm font-medium text-dark-800 mb-2;
+    @apply block text-sm font-medium text-txt-primary mb-2;
   }
 
   .help-text {
-    @apply text-xs text-dark-500 mt-1.5;
+    @apply text-xs text-txt-muted mt-1.5;
   }
 
   .example-text {
-    @apply text-xs text-dark-400 italic mt-1;
+    @apply text-xs text-txt-muted italic mt-1;
   }
 }

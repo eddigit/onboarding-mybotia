@@ -71,7 +71,7 @@ export default function Step3Missions({ data, role, onChange }: Step3Props) {
 
         <div className="space-y-3">
           <div>
-            <label className="text-xs font-medium text-dark-500 mb-1 block">
+            <label className="text-xs font-medium text-txt-secondary mb-1 block">
               Mission 1
             </label>
             <input
@@ -83,7 +83,7 @@ export default function Step3Missions({ data, role, onChange }: Step3Props) {
             />
           </div>
           <div>
-            <label className="text-xs font-medium text-dark-500 mb-1 block">
+            <label className="text-xs font-medium text-txt-secondary mb-1 block">
               Mission 2
             </label>
             <input
@@ -95,7 +95,7 @@ export default function Step3Missions({ data, role, onChange }: Step3Props) {
             />
           </div>
           <div>
-            <label className="text-xs font-medium text-dark-500 mb-1 block">
+            <label className="text-xs font-medium text-txt-secondary mb-1 block">
               Mission 3
             </label>
             <input

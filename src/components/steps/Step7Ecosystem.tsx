@@ -151,7 +151,7 @@ export default function Step7Ecosystem({ data, onChange }: Step7Props) {
             onChange={(v) => update("formule", v)}
           />
         </div>
-        <p className="text-xs text-dark-500 text-center mt-4 italic">
+        <p className="text-xs text-txt-muted text-center mt-4 italic">
           Tous les forfaits incluent un accompagnement personnalisé pour la prise
           en main.
         </p>

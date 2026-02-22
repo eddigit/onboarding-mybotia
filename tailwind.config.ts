@@ -31,6 +31,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "-apple-system", "sans-serif"],
+        brand: ["'Major Mono Display'", "monospace"],
       },
       boxShadow: {
         glow: "0 0 60px rgba(79, 125, 243, 0.12)",

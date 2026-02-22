@@ -119,6 +119,13 @@ function ConfirmationContent() {
             Retour à l&apos;accueil
           </Link>
         </div>
+
+        {/* Footer */}
+        <footer className="text-center text-xs text-txt-muted mt-6">
+          <span className="font-brand text-sm tracking-wide">MyBotIA</span>
+          <span className="mx-2">|</span>
+          MyBotIA.com &copy; {new Date().getFullYear()} &mdash; Gilles KORZEC, CEO Fondateur
+        </footer>
       </div>
     </main>
   );

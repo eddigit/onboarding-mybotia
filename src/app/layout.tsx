@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Créez Votre Assistant IA | Coach Digital Paris",
+  title: "Créez Votre Assistant IA | MyBotIA",
   description:
-    "Configurez votre assistant IA personnalisé en quelques minutes. Un parcours simple et guidé pour définir votre collaborateur virtuel.",
+    "Configurez votre assistant IA personnalisé en quelques minutes avec MyBotIA. Un parcours simple et guidé pour définir votre collaborateur virtuel.",
 };
 
 export default function RootLayout({

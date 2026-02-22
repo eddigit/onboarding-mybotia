@@ -14,16 +14,28 @@ import ChatInput from "@/components/chat/ChatInput";
 import SidebarRecap from "@/components/sidebar/SidebarRecap";
 import MobileDrawerToggle from "@/components/sidebar/MobileDrawerToggle";
 
-// Clean marker tags from streamed text
+// Clean marker tags from streamed text (handles both complete and partial markers)
 function cleanMarkers(text: string): string {
-  return text
+  let cleaned = text
+    // Remove complete marker pairs
     .replace(/\[MESSAGE\]\s*/g, "")
     .replace(/\s*\[\/MESSAGE\]/g, "")
     .replace(/\[STATE_UPDATE\][\s\S]*?\[\/STATE_UPDATE\]/g, "")
     .replace(/\[QUICK_REPLIES\][\s\S]*?\[\/QUICK_REPLIES\]/g, "")
     .replace(/\[ONBOARDING_COMPLETE\]/g, "")
-    .replace(/\[ONBOARDING_DATA\][\s\S]*?\[\/ONBOARDING_DATA\]/g, "")
-    .trim();
+    .replace(/\[ONBOARDING_DATA\][\s\S]*?\[\/ONBOARDING_DATA\]/g, "");
+
+  // During streaming: strip from any unclosed opening marker to end of string
+  // (the closing tag hasn't arrived yet, so the regex above won't match)
+  cleaned = cleaned.replace(
+    /\[(STATE_UPDATE|QUICK_REPLIES|ONBOARDING_DATA|ONBOARDING_COMPLETE|\/MESSAGE)\][\s\S]*$/g,
+    ""
+  );
+
+  // Strip partial tag being formed at the end (e.g. "[STATE" or "[QUICK_RE")
+  cleaned = cleaned.replace(/\[[A-Z_\/]*$/g, "");
+
+  return cleaned.trim();
 }
 
 export default function OnboardingPage() {

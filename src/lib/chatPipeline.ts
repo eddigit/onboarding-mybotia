@@ -5,7 +5,7 @@ import { OnboardingState, WebhookPayload } from "@/types/onboarding";
 // ============================================================
 
 const ROLE_LABELS: Record<string, string> = {
-  juridique: "Assistant juridique",
+  expert: "Expert métier",
   admin: "Assistant administratif",
   commercial: "Assistant commercial",
   polyvalent: "Assistant polyvalent",
@@ -68,7 +68,7 @@ const PLAN_DISPLAY: Record<string, string> = {
 };
 
 const ROLE_DISPLAY: Record<string, string> = {
-  juridique: "juridique",
+  expert: "expert",
   admin: "admin",
   commercial: "commercial",
   polyvalent: "polyvalent",

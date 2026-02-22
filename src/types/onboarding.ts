@@ -30,7 +30,7 @@ export interface OnboardingState {
   identite_agent: {
     prenom: string | null;
     role:
-      | "juridique"
+      | "expert"
       | "admin"
       | "commercial"
       | "polyvalent"

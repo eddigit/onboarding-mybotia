@@ -1,6 +1,6 @@
 "use client";
 
-import { Info } from "lucide-react";
+import { Info, AlertTriangle } from "lucide-react";
 
 interface InfoBoxProps {
   children: React.ReactNode;
@@ -8,15 +8,31 @@ interface InfoBoxProps {
 }
 
 export default function InfoBox({ children, variant = "info" }: InfoBoxProps) {
-  const styles = {
-    info: "bg-primary-50 border-primary-200 text-primary-800",
-    warning: "bg-amber-50 border-amber-200 text-amber-800",
-  };
+  const isWarning = variant === "warning";
 
   return (
-    <div className={`flex gap-3 p-4 rounded-xl border ${styles[variant]}`}>
-      <Info className="w-5 h-5 flex-shrink-0 mt-0.5" />
-      <div className="text-sm leading-relaxed">{children}</div>
+    <div
+      className="flex gap-3 p-4 rounded-xl"
+      style={{
+        background: isWarning
+          ? "rgba(245,158,11,0.08)"
+          : "rgba(79,125,243,0.08)",
+        border: isWarning
+          ? "1px solid rgba(245,158,11,0.2)"
+          : "1px solid rgba(79,125,243,0.2)",
+      }}
+    >
+      {isWarning ? (
+        <AlertTriangle className="w-5 h-5 flex-shrink-0 mt-0.5 text-amber-400" />
+      ) : (
+        <Info className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: "#4f7df3" }} />
+      )}
+      <div
+        className="text-sm leading-relaxed"
+        style={{ color: isWarning ? "#fbbf24" : "#93adf5" }}
+      >
+        {children}
+      </div>
     </div>
   );
 }

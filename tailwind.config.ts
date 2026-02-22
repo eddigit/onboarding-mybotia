@@ -9,33 +9,36 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: {
-          50: "#f0f4ff",
-          100: "#dbe4ff",
-          200: "#bac8ff",
-          300: "#91a7ff",
-          400: "#748ffc",
-          500: "#5c7cfa",
-          600: "#4c6ef5",
-          700: "#4263eb",
-          800: "#3b5bdb",
-          900: "#364fc7",
+        navy: {
+          950: "#040714",
+          900: "#070b1a",
+          800: "#0b1026",
+          700: "#0f1632",
+          600: "#141c42",
+          500: "#1a2352",
         },
-        dark: {
-          50: "#f8f9fa",
-          100: "#f1f3f5",
-          200: "#e9ecef",
-          300: "#dee2e6",
-          400: "#ced4da",
-          500: "#adb5bd",
-          600: "#868e96",
-          700: "#495057",
-          800: "#343a40",
-          900: "#212529",
+        accent: {
+          blue: "#4f7df3",
+          indigo: "#635bff",
+          purple: "#7c3aed",
+          cyan: "#22d3ee",
+        },
+        txt: {
+          primary: "#f0f2ff",
+          secondary: "#9ba3c2",
+          muted: "#5e6688",
         },
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
+        sans: ["Inter", "system-ui", "-apple-system", "sans-serif"],
+      },
+      boxShadow: {
+        glow: "0 0 60px rgba(79, 125, 243, 0.12)",
+        "glow-accent": "0 4px 40px rgba(99, 91, 255, 0.2)",
+        card: "0 8px 32px rgba(0, 0, 0, 0.4)",
+      },
+      animation: {
+        "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       },
     },
   },

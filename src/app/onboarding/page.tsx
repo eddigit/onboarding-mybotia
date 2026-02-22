@@ -144,14 +144,22 @@ export default function OnboardingPage() {
   };
 
   return (
-    <main className="min-h-screen bg-dark-50 py-8 px-4">
-      <div className="max-w-3xl mx-auto">
+    <main className="min-h-screen relative py-8 px-4">
+      {/* Background glow effects */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] opacity-30 pointer-events-none"
+        style={{ background: "radial-gradient(ellipse at center, rgba(79,125,243,0.15) 0%, transparent 70%)" }}
+      />
+      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] opacity-20 pointer-events-none"
+        style={{ background: "radial-gradient(ellipse at center, rgba(124,58,237,0.2) 0%, transparent 70%)" }}
+      />
+
+      <div className="max-w-3xl mx-auto relative z-10">
         {/* Logo / Brand */}
         <div className="text-center mb-8">
-          <h1 className="text-xl font-bold text-dark-900">
+          <h1 className="text-xl font-bold text-txt-primary">
             Coach Digital Paris
           </h1>
-          <p className="text-sm text-dark-500 mt-1">
+          <p className="text-sm text-txt-secondary mt-1">
             Créez votre assistant IA personnalisé
           </p>
         </div>
@@ -162,17 +170,18 @@ export default function OnboardingPage() {
         </div>
 
         {/* Form Card */}
-        <div className="bg-white rounded-2xl shadow-sm border border-dark-100 p-6 sm:p-8">
+        <div className="glass-card p-6 sm:p-8">
           {/* Contact info on last step */}
           {currentStep === 7 && (
-            <div className="mb-8 pb-6 border-b border-dark-100">
-              <h3 className="text-sm font-semibold text-dark-800 mb-4">
+            <div className="mb-8 pb-6"
+              style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+              <h3 className="text-sm font-semibold text-txt-primary mb-4">
                 Vos coordonnées
               </h3>
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
                   <label className="label-field">
-                    Votre nom <span className="text-red-500">*</span>
+                    Votre nom <span className="text-red-400">*</span>
                   </label>
                   <input
                     type="text"
@@ -186,7 +195,7 @@ export default function OnboardingPage() {
                 </div>
                 <div>
                   <label className="label-field">
-                    Votre email <span className="text-red-500">*</span>
+                    Votre email <span className="text-red-400">*</span>
                   </label>
                   <input
                     type="email"
@@ -217,12 +226,18 @@ export default function OnboardingPage() {
 
           {/* Error message */}
           {error && (
-            <div className="mt-6 p-4 bg-red-50 border border-red-200 rounded-xl text-sm text-red-700">
+            <div
+              className="mt-6 p-4 rounded-xl text-sm text-red-300"
+              style={{
+                background: "rgba(239,68,68,0.1)",
+                border: "1px solid rgba(239,68,68,0.2)",
+              }}
+            >
               {error}
               <button
                 type="button"
                 onClick={handleSubmit}
-                className="ml-2 underline font-medium hover:text-red-800"
+                className="ml-2 underline font-medium hover:text-red-200"
               >
                 Réessayer
               </button>
@@ -231,7 +246,7 @@ export default function OnboardingPage() {
         </div>
 
         {/* Footer */}
-        <p className="text-center text-xs text-dark-400 mt-6">
+        <p className="text-center text-xs text-txt-muted mt-6">
           Vos données sont traitées de manière confidentielle.
         </p>
       </div>

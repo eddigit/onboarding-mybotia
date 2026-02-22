@@ -39,20 +39,30 @@ export default function RankList({ items, onChange }: RankListProps) {
 
   return (
     <div className="space-y-2">
-      <p className="text-xs text-dark-500 mb-3">
+      <p className="text-xs text-txt-secondary mb-3">
         Utilisez les flèches pour classer par ordre d&apos;importance (1 = le
         plus important)
       </p>
       {items.map((item, index) => (
         <div
           key={item}
-          className="flex items-center gap-3 p-3 bg-white rounded-xl border-2 border-dark-200"
+          className="flex items-center gap-3 p-3 rounded-xl"
+          style={{
+            background: "rgba(255,255,255,0.03)",
+            border: "1px solid rgba(255,255,255,0.06)",
+          }}
         >
-          <GripVertical className="w-4 h-4 text-dark-400 flex-shrink-0" />
-          <span className="w-6 h-6 flex items-center justify-center rounded-full bg-primary-100 text-primary-700 text-xs font-bold flex-shrink-0">
+          <GripVertical className="w-4 h-4 text-txt-secondary flex-shrink-0" />
+          <span
+            className="w-6 h-6 flex items-center justify-center rounded-full text-xs font-bold flex-shrink-0"
+            style={{
+              background: "rgba(79,125,243,0.15)",
+              color: "#4f7df3",
+            }}
+          >
             {index + 1}
           </span>
-          <span className="flex-1 text-sm text-dark-800">
+          <span className="flex-1 text-sm text-txt-primary">
             {QUALITY_LABELS[item]}
           </span>
           <div className="flex flex-col gap-0.5">
@@ -60,19 +70,21 @@ export default function RankList({ items, onChange }: RankListProps) {
               type="button"
               onClick={() => moveUp(index)}
               disabled={index === 0}
-              className="p-0.5 rounded hover:bg-dark-100 disabled:opacity-30 transition-colors"
+              className="p-0.5 rounded disabled:opacity-30 transition-colors"
+              style={{ background: "rgba(255,255,255,0.04)" }}
               aria-label="Monter"
             >
-              <ChevronUp className="w-4 h-4 text-dark-600" />
+              <ChevronUp className="w-4 h-4 text-txt-secondary" />
             </button>
             <button
               type="button"
               onClick={() => moveDown(index)}
               disabled={index === items.length - 1}
-              className="p-0.5 rounded hover:bg-dark-100 disabled:opacity-30 transition-colors"
+              className="p-0.5 rounded disabled:opacity-30 transition-colors"
+              style={{ background: "rgba(255,255,255,0.04)" }}
               aria-label="Descendre"
             >
-              <ChevronDown className="w-4 h-4 text-dark-600" />
+              <ChevronDown className="w-4 h-4 text-txt-muted" />
             </button>
           </div>
         </div>

@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+import { Check } from "lucide-react";
 import { Step5Data } from "@/types/onboarding";
 import RadioOption from "@/components/ui/RadioOption";
 import InfoBox from "@/components/ui/InfoBox";
@@ -45,6 +47,8 @@ interface Step5Props {
 }
 
 export default function Step5Rules({ data, onChange }: Step5Props) {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   const update = (field: keyof Step5Data, value: string | string[]) => {
     onChange({ ...data, [field]: value });
   };
@@ -71,7 +75,7 @@ export default function Step5Rules({ data, onChange }: Step5Props) {
       <div>
         <label className="label-field">
           Manipulera-t-il des informations confidentielles ?{" "}
-          <span className="text-red-500">*</span>
+          <span className="text-red-400">*</span>
         </label>
         <div className="space-y-2">
           <RadioOption
@@ -102,61 +106,96 @@ export default function Step5Rules({ data, onChange }: Step5Props) {
       <div>
         <label className="label-field">
           Sujets INTERDITS pour votre assistant{" "}
-          <span className="text-red-500">*</span>
+          <span className="text-red-400">*</span>
         </label>
         <p className="help-text mb-3">
           Cochez tout ce qui s&apos;applique. Les 3 premiers sont pré-cochés par
           défaut.
         </p>
         <div className="space-y-2">
-          {INTERDIT_OPTIONS.map((option) => (
-            <label
-              key={option.value}
-              className={`
-                flex items-center gap-3 p-3 rounded-xl border-2 cursor-pointer
-                transition-all duration-200
-                ${
-                  data.interdits.includes(option.value)
-                    ? "border-primary-500 bg-primary-50"
-                    : "border-dark-200 bg-white hover:border-dark-300"
-                }
-              `}
-            >
-              <input
-                type="checkbox"
-                checked={data.interdits.includes(option.value)}
-                onChange={() => toggleInterdit(option.value)}
-                className="w-4 h-4 rounded text-primary-600 focus:ring-primary-500"
-              />
-              <span className="text-sm text-dark-800">{option.label}</span>
-            </label>
-          ))}
+          {INTERDIT_OPTIONS.map((option, index) => {
+            const isSelected = data.interdits.includes(option.value);
+            const isHovered = hoveredIndex === index;
+
+            return (
+              <label
+                key={option.value}
+                className="flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-all duration-200"
+                style={{
+                  background: isSelected
+                    ? "rgba(79,125,243,0.1)"
+                    : isHovered
+                      ? "rgba(255,255,255,0.06)"
+                      : "rgba(255,255,255,0.03)",
+                  border: isSelected
+                    ? "1px solid rgba(79,125,243,0.4)"
+                    : isHovered
+                      ? "1px solid rgba(255,255,255,0.12)"
+                      : "1px solid rgba(255,255,255,0.06)",
+                }}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+              >
+                <input
+                  type="checkbox"
+                  checked={isSelected}
+                  onChange={() => toggleInterdit(option.value)}
+                  className="sr-only"
+                />
+                {/* Custom checkbox square */}
+                <div
+                  className="w-[18px] h-[18px] rounded flex items-center justify-center flex-shrink-0 transition-all duration-200"
+                  style={{
+                    background: isSelected ? "#4f7df3" : "transparent",
+                    border: isSelected
+                      ? "2px solid #4f7df3"
+                      : "2px solid rgba(255,255,255,0.2)",
+                  }}
+                >
+                  {isSelected && <Check className="w-3 h-3 text-white" />}
+                </div>
+                <span className="text-sm text-txt-primary">{option.label}</span>
+              </label>
+            );
+          })}
 
           {/* Autre interdit */}
           <div
-            className={`
-              flex items-start gap-3 p-3 rounded-xl border-2
-              transition-all duration-200
-              ${
-                data.interditsAutre
-                  ? "border-primary-500 bg-primary-50"
-                  : "border-dark-200 bg-white"
-              }
-            `}
+            className="flex items-start gap-3 p-3 rounded-xl transition-all duration-200"
+            style={{
+              background: data.interditsAutre
+                ? "rgba(79,125,243,0.1)"
+                : "rgba(255,255,255,0.03)",
+              border: data.interditsAutre
+                ? "1px solid rgba(79,125,243,0.4)"
+                : "1px solid rgba(255,255,255,0.06)",
+            }}
           >
             <input
               type="checkbox"
               checked={!!data.interditsAutre}
               readOnly
-              className="mt-2 w-4 h-4 rounded text-primary-600 focus:ring-primary-500"
+              className="sr-only"
             />
+            {/* Custom checkbox square */}
+            <div
+              className="mt-1.5 w-[18px] h-[18px] rounded flex items-center justify-center flex-shrink-0 transition-all duration-200"
+              style={{
+                background: data.interditsAutre ? "#4f7df3" : "transparent",
+                border: data.interditsAutre
+                  ? "2px solid #4f7df3"
+                  : "2px solid rgba(255,255,255,0.2)",
+              }}
+            >
+              {data.interditsAutre && <Check className="w-3 h-3 text-white" />}
+            </div>
             <input
               type="text"
               value={data.interditsAutre}
               onChange={(e) => update("interditsAutre", e.target.value)}
               placeholder="Autre interdit..."
-              className="flex-1 text-sm text-dark-800 bg-transparent border-none
-                         outline-none placeholder-dark-400 py-1"
+              className="flex-1 text-sm text-txt-primary bg-transparent border-none
+                         outline-none placeholder-txt-muted py-1"
             />
           </div>
         </div>
@@ -165,7 +204,7 @@ export default function Step5Rules({ data, onChange }: Step5Props) {
       {/* 5.3 — Circuit de validation */}
       <div>
         <label className="label-field">
-          Circuit de validation <span className="text-red-500">*</span>
+          Circuit de validation <span className="text-red-400">*</span>
         </label>
         <div className="space-y-2">
           <RadioOption
@@ -200,7 +239,7 @@ export default function Step5Rules({ data, onChange }: Step5Props) {
       <div>
         <label className="label-field">
           Communication avec d&apos;autres personnes{" "}
-          <span className="text-red-500">*</span>
+          <span className="text-red-400">*</span>
         </label>
         <div className="space-y-2">
           <RadioOption

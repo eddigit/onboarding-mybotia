@@ -10,7 +10,8 @@ export default function ExampleHint({ examples }: ExampleHintProps) {
       {examples.map((example, i) => (
         <span
           key={i}
-          className="text-xs text-dark-400 italic bg-dark-50 px-2 py-1 rounded-md"
+          className="text-xs text-txt-muted italic px-2 py-1 rounded-md"
+          style={{ background: "rgba(255,255,255,0.04)" }}
         >
           {example}
         </span>

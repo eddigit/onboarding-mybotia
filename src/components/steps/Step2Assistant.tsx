@@ -32,7 +32,7 @@ export default function Step2Assistant({ data, onChange }: Step2Props) {
       <div>
         <label className="label-field">
           Donnez un prénom à votre assistant{" "}
-          <span className="text-red-500">*</span>
+          <span className="text-red-400">*</span>
         </label>
         <input
           type="text"
@@ -53,9 +53,26 @@ export default function Step2Assistant({ data, onChange }: Step2Props) {
               onClick={() => update("prenomAgent", name)}
               className={`px-3 py-1.5 rounded-full text-sm transition-all duration-200 ${
                 data.prenomAgent === name
-                  ? "bg-primary-600 text-white"
-                  : "bg-dark-100 text-dark-600 hover:bg-dark-200"
+                  ? "bg-gradient-to-r from-accent-blue to-accent-indigo text-white"
+                  : "text-txt-secondary hover:text-txt-primary"
               }`}
+              style={
+                data.prenomAgent === name
+                  ? undefined
+                  : {
+                      background: "rgba(255,255,255,0.06)",
+                    }
+              }
+              onMouseEnter={(e) => {
+                if (data.prenomAgent !== name) {
+                  (e.target as HTMLButtonElement).style.background = "rgba(255,255,255,0.1)";
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (data.prenomAgent !== name) {
+                  (e.target as HTMLButtonElement).style.background = "rgba(255,255,255,0.06)";
+                }
+              }}
             >
               {name}
             </button>
@@ -67,7 +84,7 @@ export default function Step2Assistant({ data, onChange }: Step2Props) {
       <div>
         <label className="label-field">
           Quel est son rôle principal ?{" "}
-          <span className="text-red-500">*</span>
+          <span className="text-red-400">*</span>
         </label>
         <div className="space-y-2">
           <RadioOption
@@ -128,7 +145,7 @@ export default function Step2Assistant({ data, onChange }: Step2Props) {
       <div>
         <label className="label-field">
           Si votre assistant était un collaborateur, il serait plutôt :{" "}
-          <span className="text-red-500">*</span>
+          <span className="text-red-400">*</span>
         </label>
         <div className="space-y-2">
           <RadioOption

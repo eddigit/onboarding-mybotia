@@ -19,7 +19,7 @@ export default function Step1Profile({ data, onChange }: Step1Props) {
       {/* 1.1 — Métier */}
       <div>
         <label className="label-field">
-          Quel est votre métier ? <span className="text-red-500">*</span>
+          Quel est votre métier ? <span className="text-red-400">*</span>
         </label>
         <input
           type="text"
@@ -45,7 +45,7 @@ export default function Step1Profile({ data, onChange }: Step1Props) {
       <div>
         <label className="label-field">
           Quel est votre domaine de spécialité ?{" "}
-          <span className="text-red-500">*</span>
+          <span className="text-red-400">*</span>
         </label>
         <input
           type="text"
@@ -69,7 +69,7 @@ export default function Step1Profile({ data, onChange }: Step1Props) {
       <div>
         <label className="label-field">
           Décrivez votre cabinet en une phrase{" "}
-          <span className="text-red-500">*</span>
+          <span className="text-red-400">*</span>
         </label>
         <textarea
           value={data.cabinet}
@@ -87,7 +87,7 @@ export default function Step1Profile({ data, onChange }: Step1Props) {
               "Associée dans un cabinet de 5 avocats, spécialisé contentieux",
             ]}
           />
-          <span className="text-xs text-dark-400 flex-shrink-0 ml-2">
+          <span className="text-xs text-txt-muted flex-shrink-0 ml-2">
             {data.cabinet.length}/200
           </span>
         </div>
@@ -97,7 +97,7 @@ export default function Step1Profile({ data, onChange }: Step1Props) {
       <div>
         <label className="label-field">
           Êtes-vous à l&apos;aise avec les outils numériques ?{" "}
-          <span className="text-red-500">*</span>
+          <span className="text-red-400">*</span>
         </label>
         <div className="space-y-2">
           <RadioOption
@@ -127,7 +127,7 @@ export default function Step1Profile({ data, onChange }: Step1Props) {
       {/* 1.5 — Langue */}
       <div>
         <label className="label-field">
-          Langue de travail <span className="text-red-500">*</span>
+          Langue de travail <span className="text-red-400">*</span>
         </label>
         <div className="space-y-2">
           <RadioOption

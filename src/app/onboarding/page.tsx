@@ -156,8 +156,8 @@ export default function OnboardingPage() {
       <div className="max-w-3xl mx-auto relative z-10">
         {/* Logo / Brand */}
         <div className="text-center mb-8">
-          <h1 className="text-xl font-bold text-txt-primary">
-            Coach Digital Paris
+          <h1 className="font-brand text-2xl text-txt-primary tracking-wide">
+            MyBotIA
           </h1>
           <p className="text-sm text-txt-secondary mt-1">
             Créez votre assistant IA personnalisé
@@ -246,9 +246,14 @@ export default function OnboardingPage() {
         </div>
 
         {/* Footer */}
-        <p className="text-center text-xs text-txt-muted mt-6">
-          Vos données sont traitées de manière confidentielle.
-        </p>
+        <footer className="text-center text-xs text-txt-muted mt-6 space-y-1">
+          <p>Vos données sont traitées de manière confidentielle.</p>
+          <p>
+            <span className="font-brand text-sm tracking-wide">MyBotIA</span>
+            <span className="mx-2">|</span>
+            MyBotIA.com &copy; {new Date().getFullYear()} &mdash; Gilles KORZEC, CEO Fondateur
+          </p>
+        </footer>
       </div>
     </main>
   );
